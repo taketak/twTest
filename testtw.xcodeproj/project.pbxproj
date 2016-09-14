@@ -14,6 +14,8 @@
 		D9617ECF1D89AC52002D6501 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9617ECD1D89AC52002D6501 /* LaunchScreen.storyboard */; };
 		D9617EDA1D89AC52002D6501 /* testtwTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617ED91D89AC52002D6501 /* testtwTests.swift */; };
 		D9617EE51D89AC52002D6501 /* testtwUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617EE41D89AC52002D6501 /* testtwUITests.swift */; };
+		D9617EF31D89AC6D002D6501 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9617EF21D89AC6D002D6501 /* Accounts.framework */; };
+		D9617EF51D89AC78002D6501 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9617EF41D89AC78002D6501 /* Social.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		D9617EE01D89AC52002D6501 /* testtwUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = testtwUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9617EE41D89AC52002D6501 /* testtwUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testtwUITests.swift; sourceTree = "<group>"; };
 		D9617EE61D89AC52002D6501 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9617EF21D89AC6D002D6501 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		D9617EF41D89AC78002D6501 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9617EF51D89AC78002D6501 /* Social.framework in Frameworks */,
+				D9617EF31D89AC6D002D6501 /* Accounts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +83,8 @@
 		D9617EB81D89AC51002D6501 = {
 			isa = PBXGroup;
 			children = (
+				D9617EF41D89AC78002D6501 /* Social.framework */,
+				D9617EF21D89AC6D002D6501 /* Accounts.framework */,
 				D9617EC31D89AC52002D6501 /* testtw */,
 				D9617ED81D89AC52002D6501 /* testtwTests */,
 				D9617EE31D89AC52002D6501 /* testtwUITests */,
@@ -404,6 +412,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = testtw/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = testman.testtw;
@@ -415,6 +424,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = testtw/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = testman.testtw;
