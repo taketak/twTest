@@ -18,17 +18,26 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        //アウトレットの設定
+
         
         //アカウント取得
         getAccounts(){(account: [ACAccount]) -> Void in
             //今回はとりあえず頭のアカウントを設定
-            //アカウント振り分け処理は追って実装（自分しか使わないし要らない？）
+            //アカウント振り分け処理は追って実装（とりあえず1番目のアカウント指定）
             self.twitterAccount=account[0]
+            
             //タイムライン取得
             //これもとりあえず仮置き
-            self.getTimeline(){(timeLine: NSMutableArray) -> Void in
-                //とりあえず書き出し
-                print(timeLine)
+           self.getTimeline(){(timeLine: NSMutableArray) -> Void in
+                //とりあえず書き出
+                self.tweets = timeLine[0] as! NSArray
+            var test2 : [String] = []
+            for tweets in self.tweets {
+                test2.append(tweets["text"] as! String)
+            }
+            print(test2)
+            print(self.tweets.count)
             }
         }
     }
@@ -41,6 +50,7 @@ class ViewController: UIViewController {
     //ツイッターアカウント変数
     var accountstore = ACAccountStore()
     var  twitterAccount : ACAccount?
+    var tweets = []
     
     //ツイッターアカウント取得
     func getAccounts(callback: [ACAccount] -> Void) {
@@ -71,7 +81,7 @@ class ViewController: UIViewController {
             callback(accounts)
         }
     }
-    
+
     //リクエスト作成
     func sendRequest(url: NSURL, requestMethod: SLRequestMethod, params: AnyObject?, responseHandler: (responseData: NSData!, urlResponse: NSHTTPURLResponse!) -> Void) {
         let request:SLRequest = SLRequest(
@@ -95,16 +105,11 @@ class ViewController: UIViewController {
     //タイムライン取得
     func getTimeline(callbabk: NSMutableArray -> Void) {
         //リクエストの宛先（今回はtwitter
-        let url:NSURL = NSURL(string: "https://api.twitter.com/1.1/statuses/user_timeline.json")!
+        let url:NSURL = NSURL(string: "https://api.twitter.com/1.1/statuses/home_timeline.json")!
         //リクエスト実行
-        sendRequest(url, requestMethod: .GET, params: nil) { (responseData, urlResponse) -> Void in
+        sendRequest(url, requestMethod: .GET, params: ["count": "200"]) { (responseData, urlResponse) -> Void in
             do {
-                let result:NSMutableArray = [try NSJSONSerialization.JSONObjectWithData(responseData, options: .AllowFragments).mutableCopy()]
-                /*メモ
-                 JSONから作成した配列をそのままキャストして引き渡すとエラーになる。
-                 mutableに保存しても取り出し時にimmutableな配列になるらしい。
-                 mutableCopyを一回噛ませること（そのうち修正されそう・・・）
-                 */
+                let result:NSMutableArray = [try NSJSONSerialization.JSONObjectWithData(responseData, options: .AllowFragments)]
                 //無事処理完了でコールバックする
                 callbabk(result)
             } catch {
@@ -112,7 +117,5 @@ class ViewController: UIViewController {
             }
         }
     }
-
-
+ 
 }
-
